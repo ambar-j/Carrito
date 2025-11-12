@@ -1,7 +1,7 @@
 window.__products = []
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Window firebaseAdmin', window.firestore)
+    /*
     const products = [
         {
             id: 1, 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: './images/kit-especial.jpg',
             desc: 'Kit completo con 4 jabones artesanales, aromas y spray de sándalo. La combinación perfecta para regalar o consentirte. Presentación especial en caja eco-friendly.'
         },
-    ];
+    ];*/
 
     // ===== CARGAR CARRITO DESDE LOCALSTORAGE =====
     let cart = [];
