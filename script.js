@@ -50,9 +50,31 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     ];
 
+    // ===== CARGAR CARRITO DESDE LOCALSTORAGE =====
     let cart = [];
+    const savedCart = localStorage.getItem('myrodiaCart');
+    if (savedCart) {
+        try {
+            cart = JSON.parse(savedCart);
+            console.log('✅ Carrito cargado desde LocalStorage:', cart);
+        } catch (error) {
+            console.error('❌ Error al cargar carrito:', error);
+            cart = [];
+        }
+    }
+
     let currentCategory = 'todos';
     let selectedProduct = null;
+
+    // ===== GUARDAR CARRITO EN LOCALSTORAGE =====
+    function saveCart() {
+        try {
+            localStorage.setItem('myrodiaCart', JSON.stringify(cart));
+            console.log('💾 Carrito guardado en LocalStorage');
+        } catch (error) {
+            console.error('❌ Error al guardar carrito:', error);
+        }
+    }
 
     function renderProducts() {
         const grid = document.getElementById('productsGrid');
@@ -120,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cart.push({ ...product, quantity: 1 });
         }
 
+        // GUARDAR EN LOCALSTORAGE
+        saveCart();
         updateCart();
     };
 
@@ -130,6 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item.quantity <= 0) {
                 cart = cart.filter(i => i.id !== productId);
             }
+            // GUARDAR EN LOCALSTORAGE
+            saveCart();
             updateCart();
         }
     };
@@ -189,9 +215,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const itemsList = cart.map(item => `${item.name} x${item.quantity}`).join('\n');
         alert(`✅ ¡Gracias por tu compra!\n\n${itemsList}\n\n💰 Total: $${total}\n\n🎉 ¡Pronto recibirás tus productos!`);
+        
+        // LIMPIAR CARRITO Y LOCALSTORAGE
         cart = [];
+        saveCart();
         updateCart();
         toggleCart();
+    };
+
+    // ===== FUNCIÓN PARA LIMPIAR EL CARRITO MANUALMENTE =====
+    window.clearCart = function() {
+        if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
+            cart = [];
+            saveCart();
+            updateCart();
+            alert('🗑️ Carrito vaciado');
+        }
     };
 
     // Cerrar modales al hacer clic fuera
@@ -203,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === this) closeProductModal();
     });
 
-    // Render inicial
+    // Render inicial y cargar carrito guardado
     renderProducts();
+    updateCart(); // Actualizar UI con el carrito cargado
 });
