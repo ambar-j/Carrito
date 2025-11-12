@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', () => {
+function initEcommerce(products) {
     /*
     const products = [
         {
@@ -10,46 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: './images/jabon-coco.jpg',
             desc: 'Jabón artesanal 100% natural con aceite de coco puro. Hidrata profundamente y deja la piel suave y sedosa. Elaborado a mano con ingredientes orgánicos.'
         },
-        {
-            id: 2, 
-            name: 'Jabón de Vainilla', 
-            price: 2000, 
-            category: 'jabones', 
-            icon: './images/jabon-vainilla.jpg',
-            desc: 'Jabón cremoso con extracto de vainilla natural. Aromático y delicado, perfecto para pieles sensibles. Deja una fragancia dulce y reconfortante.'
-        },
-        {
-            id: 3, 
-            name: 'Jabón de Lavanda', 
-            price: 2000, 
-            category: 'jabones', 
-            icon: './images/jabon-lavanda.jpg',
-            desc: 'Jabón relajante con aceite esencial de lavanda. Propiedades calmantes y aromáticas ideales para el final del día. Elaboración artesanal con flores de lavanda.'
-        },
-        {
-            id: 4, 
-            name: 'Aromatizante de Sándalo', 
-            price: 2000, 
-            category: 'aromatizantes', 
-            icon: './images/aromatizante-sandalo.jpg',
-            desc: 'Spray aromatizante con esencia de sándalo. Perfecto para ambientar espacios con un aroma místico y relajante. 100ml de pura frescura natural.'
-        },
-        {
-            id: 5, 
-            name: 'Kit MYRODIA', 
-            price: 8000, 
-            category: 'kits', 
-            icon: './images/kit-myrodia.jpg',
-            desc: 'Kit completo con 3 jabones artesanales, aromas y spray de sándalo. La combinación perfecta para regalar o consentirte. Presentación especial en caja eco-friendly.'
-        },
-        {
-            id: 6, 
-            name: 'Kit ESPECIAL', 
-            price: 10000, 
-            category: 'especiales', 
-            icon: './images/kit-especial.jpg',
-            desc: 'Kit completo con 4 jabones artesanales, aromas y spray de sándalo. La combinación perfecta para regalar o consentirte. Presentación especial en caja eco-friendly.'
-        },
+        
     ];*/
 
     // ===== CARGAR CARRITO DESDE LOCALSTORAGE =====
@@ -81,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProducts() {
         const grid = document.getElementById('productsGrid');
         const filtered = currentCategory === 'todos'
-            ? window.products
-            : window.products.filter(p => p.category === currentCategory);
+            ? products
+            : products.filter(p => p.category === currentCategory);
 
         grid.innerHTML = filtered.map(product => `
             <div class="product-card" onclick="showProductModal(${product.id})">
@@ -101,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.showProductModal = function(id) {
-        selectedProduct = window.products.find(p => p.id === id);
+        selectedProduct = products.find(p => p.id === id);
         document.getElementById('modalTitle').textContent = selectedProduct.name;
         document.getElementById('modalIcon').innerHTML = `
             <img src="${selectedProduct.icon}" alt="${selectedProduct.name}" 
@@ -135,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addToCart = function(productId) {
-        const product = window.products.find(p => p.id === productId);
+        const product = products.find(p => p.id === productId);
         const existingItem = cart.find(item => item.id === productId);
 
         if (existingItem) {
