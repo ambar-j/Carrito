@@ -113,8 +113,16 @@
 
         // Initialize Firebase
         window.firebaseApp = initializeApp(firebaseConfig);
-        window.firestore = getFirestore(window.firebaseApp);
+        window.db = getFirestore(window.firebaseApp);
         
+        function getProducts() {
+            const productsColl = collection(window.db, "productos")
+            const prodsSnapshot = getDocs(productsColl);
+            const prodsList = prodsSnapshot.docs.map(doc => doc.data());
+            return prodsList
+        }
+
+        console.log(getProducts());
     </script>
     <script type="text/javascript" src="script.js"></script>
 </body>
