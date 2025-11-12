@@ -51,7 +51,7 @@ function initEcommerce(products) {
                     <img src="${product.icon}" alt="${product.nombre}" 
                          style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                 </div>
-                <div class="product-name">${product.name}</div>
+                <div class="product-name">${product.nombre}</div>
                 <div class="product-desc">${product.desc.substring(0, 70)}...</div>
                 <div class="product-price">$${product.precio}</div>
                 <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">
