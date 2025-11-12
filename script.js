@@ -1,4 +1,7 @@
+window.__products = []
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Window firebaseAdmin', window._firebaseAdmin)
     const products = [
         {
             id: 1, 
