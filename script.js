@@ -1,4 +1,3 @@
-window.__products = []
 
 document.addEventListener('DOMContentLoaded', () => {
     /*
@@ -82,8 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProducts() {
         const grid = document.getElementById('productsGrid');
         const filtered = currentCategory === 'todos'
-            ? products
-            : products.filter(p => p.category === currentCategory);
+            ? window.products
+            : window.products.filter(p => p.category === currentCategory);
 
         grid.innerHTML = filtered.map(product => `
             <div class="product-card" onclick="showProductModal(${product.id})">
@@ -102,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.showProductModal = function(id) {
-        selectedProduct = products.find(p => p.id === id);
+        selectedProduct = window.products.find(p => p.id === id);
         document.getElementById('modalTitle').textContent = selectedProduct.name;
         document.getElementById('modalIcon').innerHTML = `
             <img src="${selectedProduct.icon}" alt="${selectedProduct.name}" 
@@ -136,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addToCart = function(productId) {
-        const product = products.find(p => p.id === productId);
+        const product = window.products.find(p => p.id === productId);
         const existingItem = cart.find(item => item.id === productId);
 
         if (existingItem) {
