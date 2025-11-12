@@ -208,4 +208,4 @@ function initEcommerce(products) {
     // Render inicial y cargar carrito guardado
     renderProducts();
     updateCart(); // Actualizar UI con el carrito cargado
-});
+}

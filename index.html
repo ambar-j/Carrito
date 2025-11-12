@@ -123,8 +123,10 @@
             return prodsList
         }
 
-        const products = await getProducts();
-        renderEcommerce(products);
+        window.addEventListener('DOMContentLoaded', async () => {
+            const products = await getProducts();
+            renderEcommerce(products);
+        })
     </script>
 </body>
 
