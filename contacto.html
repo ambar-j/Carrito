@@ -21,31 +21,33 @@
       </div>
     </div>
   </nav>
-  <form action="https://formspree.io/f/mpwbqvjz" method="POST">  <main class="container py-5">
+
+  <main class="container py-5">
     <h1 class="mb-4">Contáctanos</h1>
     
+    <form action="https://formspree.io/f/mpwbqvjz" method="POST">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
       </div>
       <div class="mb-3">
         <label for="correo" class="form-label">Correo</label>
-        <input type="email" class="form-control" id="correo" required>
+        <input type="email" class="form-control" id="correo" name="email" required>
       </div>
       <div class="mb-3">
         <label for="mensaje" class="form-label">Mensaje</label>
-        <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+        <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
   </main>
-</body>
 
-<footer>
+  <footer>
     <div class="pie">
         <p>Todos los derechos reservados | <strong>MYRODIA 2025</strong></p>
         <p>Contacto | <strong>myrodia2025@gmail.com - <a href="https://www.instagram.com/myrodia.ma/">@myrodia.ma</a></strong></p>
         <p>Dirección | <strong>Colegio Mano Amiga</strong></p>
     </div>
-</footer>
+  </footer>
+</body>
 </html>
